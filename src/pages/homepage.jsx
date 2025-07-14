@@ -1,52 +1,73 @@
+import styles from '../styles/homepage.module.css';
 
-const HomePage = ( ) => {
+const HomePage = () => {
+  return (
+    <>
+      <nav className={styles.navbar}>
+        <div className={styles.companyName}>DigiTech</div>
+        <div className={styles.searchBar}>
+          <input type="text" placeholder="Search..." />
+          <span>🔍</span>
+        </div>
+        <div className={styles.icons}>
+          <span>👤</span>
+          <span>❤️</span>
+          <span>🛒</span>
+        </div>
+      </nav>
 
-    return (
-        <>
-            <nav>
-                <div className="companyName"></div>
-                <div className="searchBar">
-                    <input type="text" placeholder='Search...' />
-                    <span>search Icon</span>
-                </div>
-                <div className="icons">
+      <main>
+        {/* Top Flex Row: HomePod + Apple Watch */}
+        <section className={styles.topRow}>
+          <div className={`${styles.card} ${styles.blue}`}>
+            <div>
+              <h1>Apple HomePod 2nd Gen Speaker</h1>
+              <p>
+                Apple ecosystem and provide high-quality audio playback while also serving as a hub for controlling smart home devices.
+              </p>
+              <button>Shop Now →</button>
+            </div>
+            <img src="https://via.placeholder.com/150" alt="HomePod" />
+          </div>
 
-                    <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                        </svg>
-                    </span>
+          <div className={`${styles.card} ${styles.purple}`}>
+            <div>
+              <h2>Explore Apple Watch</h2>
+              <p>Shop Now →</p>
+            </div>
+            <img src="https://via.placeholder.com/100" alt="Apple Watch" />
+          </div>
+        </section>
 
-                    <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
-                        </svg>
-                    </span>
+        {/* Bottom Cards Grid */}
+        <section className={styles.bottomGrid}>
+          <div className={`${styles.card} ${styles.orange}`}>
+            <div>
+              <h2>Samsung Gear Camera</h2>
+              <p>Shop Now →</p>
+            </div>
+            <img src="https://via.placeholder.com/100" alt="Samsung Camera" />
+          </div>
 
-                    <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                        </svg>
-                    </span>
+          <div className={`${styles.card} ${styles.green}`}>
+            <div>
+              <h2>Beats Studio Buds</h2>
+              <p>Shop Now →</p>
+            </div>
+            <img src="https://via.placeholder.com/100" alt="Beats" />
+          </div>
 
-                </div>
-            </nav>
-
-            <main>
-                <section1>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </section1>
-                <section2></section2>
-                <section3></section3>
-                <section4></section4>
-                <section5></section5>
-            </main>
-        </>
-    )
-}
+          <div className={`${styles.card} ${styles.dark}`}>
+            <div>
+              <h2>Hero Camera</h2>
+              <p>Shop Now →</p>
+            </div>
+            <img src="https://via.placeholder.com/100" alt="Hero" />
+          </div>
+        </section>
+      </main>
+    </>
+  );
+};
 
 export default HomePage;

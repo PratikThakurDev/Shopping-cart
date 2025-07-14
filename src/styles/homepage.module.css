@@ -1,0 +1,78 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.companyName {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.searchBar {
+  display: flex;
+  gap: 0.5rem;
+  background-color: #eee;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.icons {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Top section: HomePod + Apple Watch */
+.topRow {
+  display: flex;
+  gap: 1.5rem;
+  padding: 2rem;
+  margin-top: 1rem;
+}
+
+/* Bottom grid: 3 stacked cards */
+.bottomGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  color: white;
+  border-radius: 12px;
+  min-height: 180px;
+}
+
+.card img {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Colors for each card */
+.blue {
+  background: radial-gradient(circle, #002f8c, #000);
+}
+
+.purple {
+  background: linear-gradient(45deg, #8e2de2, #4a00e0);
+}
+
+.orange {
+  background: linear-gradient(to right, #ff6a00, #ff9800);
+}
+
+.green {
+  background: linear-gradient(to bottom right, #00c853, #2d058b);
+}
+
+.dark {
+  background: linear-gradient(to bottom right, #000, #555);
+}
