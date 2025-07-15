@@ -131,8 +131,36 @@ const HomePage = () => {
               ))}
             </div>
         </section>
+        <section className={styles.recommendedSection}>
+          <h3 className={styles.sectionTitle}>Recommended for You</h3>
 
+          {/* Category Tabs */}
+          <nav className={styles.tabs}>
+            {['Accessories', 'Smart Watch', 'Smart Phone', 'Speaker'].map((cat, i) => (
+              <span key={i} className={i === 0 ? styles.activeTab : ''}>{cat}</span>
+            ))}
+          </nav>
 
+          {/* Product Grid */}
+          <div className={styles.productGrid}>
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className={styles.productCard}>
+                <div className={styles.inStock}>• In stock 52 Items</div>
+                <img src={phone} alt="Product" />
+                <h4>Product Name {i + 1}</h4>
+                <p className={styles.price}>${(100 + i * 100)}</p>
+                <button>Order Now</button>
+              </div>
+            ))}
+          </div>
+
+          {/* Brand Logos */}
+          <div className={styles.brandRow}>
+            {['Renesas', 'Sharp', 'Huawei', 'Nokia', 'Samsung', 'Canon'].map((brand, i) => (
+              <img key={i} src={`https://via.placeholder.com/80x30?text=${brand}`} alt={brand} />
+            ))}
+          </div>
+        </section>
       </main>
     </>
   );

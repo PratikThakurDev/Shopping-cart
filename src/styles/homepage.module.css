@@ -300,3 +300,96 @@
 .purple {
   background: linear-gradient(to right, #6a11cb, #2575fc);
 }
+
+.recommendedSection {
+  background: #f5f7fc;
+  padding: 2rem;
+}
+
+.sectionTitle {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.tabs span {
+  color: #444;
+  cursor: pointer;
+}
+
+.activeTab {
+  font-weight: 600;
+  color: #000;
+  text-decoration: underline;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.productCard {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+
+.productCard img {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+  margin: 1rem 0;
+}
+
+.inStock {
+  font-size: 0.75rem;
+  color: #555;
+  text-align: left;
+}
+
+.productCard h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0.5rem 0;
+}
+
+.price {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.productCard button {
+  background: #1e1bfb;
+  color: white;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.brandRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.brandRow img {
+  height: 30px;
+  object-fit: contain;
+}
