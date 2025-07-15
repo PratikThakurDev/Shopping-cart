@@ -1,0 +1,74 @@
+.resultsSection {
+  padding: 2rem;
+  background-color: white;
+}
+
+.resultsSection h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.subText {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.card {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  align-items: flex-start;
+}
+
+.productImg {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.productInfo {
+  flex: 1;
+}
+
+.tag {
+  background-color: #eee;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 0.4rem;
+  color: #555;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.description {
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.delivery {
+  font-size: 0.85rem;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.cartBtn {
+  background-color: #ffd814;
+  border: 1px solid #fcd200;
+  border-radius: 5px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  font-weight: 600;
+}
