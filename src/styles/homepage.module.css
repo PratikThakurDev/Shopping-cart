@@ -1,29 +1,3 @@
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  border-bottom: 1px solid #ccc;
-}
-
-.companyName {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.searchBar {
-  display: flex;
-  gap: 0.5rem;
-  background-color: #eee;
-  padding: 0.5rem;
-  border-radius: 8px;
-  width : 20rem
-}
-
-.icons {
-  display: flex;
-  gap: 1rem;
-}
 
 /* Top section: HomePod + Apple Watch */
 .topRow {

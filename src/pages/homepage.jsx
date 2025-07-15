@@ -1,21 +1,11 @@
 import styles from '../styles/homepage.module.css';
 import appleWatch from '../assets/ali-haki-ygXQfVFwbkA-unsplash.jpg';
 import phone from '../assets/phone.jpg' ;
+import NavBar from '../components/navbar';
 const HomePage = () => {
   return (
     <>
-      <nav className={styles.navbar}>
-        <div className={styles.companyName}>DigiTech</div>
-        <div className={styles.searchBar}>
-          <input className={styles.input} type="text" placeholder="Search..." />
-          <span>🔍</span>
-        </div>
-        <div className={styles.icons}>
-          <span>👤</span>
-          <span>❤️</span>
-          <span>🛒</span>
-        </div>
-      </nav>
+      <NavBar/>
 
       <main>
         {/* Top Flex Row: HomePod + Apple Watch */}
