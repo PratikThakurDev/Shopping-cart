@@ -281,12 +281,14 @@
 }
 
 .collectionItem p {
+  margin-left: 3rem;
   font-weight: 500;
   font-size: 0.9rem;
   margin-bottom: 0.2rem;
 }
 
 .collectionItem span {
+  margin-left: 3rem;
   font-size: 0.75rem;
   color: #888;
 }
@@ -392,4 +394,65 @@
 .brandRow img {
   height: 30px;
   object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .searchBar {
+    width: 100%;
+  }
+
+  .input {
+    width: 100%;
+  }
+
+  .topRow {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .bottomGrid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .promoBanners {
+    flex-direction: column;
+  }
+
+  .collectionGrid {
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  .collectionItem {
+    width: 45%;
+  }
+
+  .circle {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .productGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .brandRow {
+    justify-content: center;
+  }
+
+  .productCard img {
+    width: 80px;
+  }
 }
