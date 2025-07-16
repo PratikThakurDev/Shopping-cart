@@ -61,9 +61,7 @@
   background: linear-gradient(to bottom right, #000, #555);
 }
 
-.input {
-  width: 19rem;
-}
+
 
 .trendingSection {
   padding: 2rem;
@@ -371,19 +369,6 @@
 }
 
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .searchBar {
-    width: 100%;
-  }
-
-  .input {
-    width: 100%;
-  }
 
   .topRow {
     grid-template-columns: 1fr;

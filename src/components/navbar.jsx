@@ -11,7 +11,6 @@ const NavBar = ( ) => {
             </div>
             <div className={styles.icons}>
                 <span>👤</span>
-                <span>❤️</span>
                 <span>🛒</span>
             </div>
             </nav>

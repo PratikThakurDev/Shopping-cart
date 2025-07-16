@@ -1,60 +1,129 @@
-import styles from '../styles/homepage.module.css';
 import appleWatch from '../assets/ali-haki-ygXQfVFwbkA-unsplash.jpg';
-import phone from '../assets/phone.jpg' ;
+import phone from '../assets/phone.jpg';
 import NavBar from '../components/navbar';
+import styles from '../styles/homepage.module.css';
+import {useEffect , useState} from 'react' ;
+import { getAllProducts } from '../api/productService';
+
 const HomePage = () => {
+
+const [products,setProducts] = useState([]) ;
+
+useEffect(() => {
+  async function fetchProducts() {
+    const products = await getAllProducts();
+    console.log(products) ;
+    setProducts(products) ;
+  }
+  fetchProducts();
+ ;
+  
+}, []);
   return (
     <>
+
       <NavBar/>
 
       <main>
         {/* Top Flex Row: HomePod + Apple Watch */}
         <section className={styles.topRow}>
-          <div className={`${styles.card} ${styles.blue}`}>
-            <div>
-              <h1>Apple HomePod 2nd Gen Speaker</h1>
-              <p>
-                Apple ecosystem and provide high-quality audio playback while also serving as a hub for controlling smart home devices.
-              </p>
-              <button>Shop Now →</button>
-            </div>
-            <img src={appleWatch} alt="HomePod" />
-          </div>
-
-          <div className={`${styles.card} ${styles.purple}`}>
-            <div>
-              <h2>Explore Apple Watch</h2>
-              <p>Shop Now →</p>
-            </div>
-            <img src={appleWatch} alt="Apple Watch" />
-          </div>
+          {products ? (
+            products
+              .filter((product) => product.brand === 'Apple' && product.tags.includes('smart speakers'))
+              .map((product) => (
+                <div key={product.id} className={`${styles.card} ${styles.blue}`}>
+                  <div>
+                    <h1>{product.title}</h1>
+                    <p>{product.description}</p>
+                    <button>Shop Now →</button>
+                  </div>
+                  <img src={product.thumbnail} alt={product.title} />
+                </div>
+              ))
+          ) : (
+            <p>Loading...</p>
+          )}
+          {products ? (
+            products
+              .filter((product) => product.brand === 'Apple' &&
+        product.title.toLowerCase().includes('watch'))
+              .map((product) => (
+                <div key={product.id} className={`${styles.card} ${styles.purple}`}>
+                  <div>
+                    <h1>Explore {product.title}</h1>
+                    <p>Shop Now →</p>
+                  </div>
+                  <img src={product.thumbnail} alt={product.title} />
+                </div>
+              ))
+          ) : (
+            <p>Loading...</p>
+          )}
         </section>
 
         {/* Bottom Cards Grid */}
         <section className={styles.bottomGrid}>
-          <div className={`${styles.card} ${styles.orange}`}>
-            <div>
-              <h2>Samsung Gear Camera</h2>
-              <p>Shop Now →</p>
-            </div>
-            <img src={appleWatch} alt="Samsung Camera" />
-          </div>
+          {products ? (
+            products
+              .filter(
+                (product) =>
+                  product.brand === 'Amazon' &&
+                  product.title.toLowerCase().includes('echo')
+              )
+              .map((product) => (
+                <div key={product.id} className={`${styles.card} ${styles.orange}`}>
+                  <div>
+                    <h2>{product.title}</h2>
+                    <p>Shop Now →</p>
+                  </div>
+                  <img src={product.thumbnail} alt={product.title} />
+                </div>
+              ))
+          ) : (
+            <p>Loading...</p>
+          )}
 
-          <div className={`${styles.card} ${styles.green}`}>
-            <div>
-              <h2>Beats Studio Buds</h2>
-              <p>Shop Now →</p>
-            </div>
-            <img src={appleWatch} alt="Beats" />
-          </div>
 
-          <div className={`${styles.card} ${styles.dark}`}>
-            <div>
-              <h2>Hero Camera</h2>
-              <p>Shop Now →</p>
-            </div>
-            <img src={appleWatch} alt="Hero" />
-          </div>
+          {products ? (
+            products
+              .filter(
+                (product) =>
+                  product.brand === 'Apple' &&
+                  product.title.toLowerCase().includes('pods max')
+              )
+              .map((product) => (
+                <div key={product.id} className={`${styles.card} ${styles.green}`}>
+                  <div>
+                    <h2>{product.title}</h2>
+                    <p>Shop Now →</p>
+                  </div>
+                  <img src={product.thumbnail} alt={product.title} />
+                </div>
+              ))
+          ) : (
+            <p>Loading...</p>
+          )}
+
+          {products ? (
+            products
+              .filter(
+                (product) =>
+                  product.brand === 'Rolex' &&
+                  product.title.toLowerCase().includes('watch')
+              )
+              .map((product) => (
+                <div key={product.id} className={`${styles.card} ${styles.dark}`}>
+                  <div>
+                    <h2>{product.title}</h2>
+                    <p>Shop Now →</p>
+                  </div>
+                  <img src={product.thumbnail} alt={product.title} />
+                </div>
+              ))
+          ) : (
+            <p>Loading...</p>
+          )}
+
         </section>
         <section className={styles.trendingSection}>
             <h2>Trending Products</h2>
@@ -67,18 +136,20 @@ const HomePage = () => {
             </nav>
 
             <div className={styles.productsGrid}>
-              {Array(10).fill(0).map((_, index) => (
-                <div key={index} className={styles.productCard}>
-                  <div className={styles.tag}>New</div>
-                  <img src={phone} alt="Product" />
-                  <p className={styles.stock}>In stock 52 Items</p>
-                  <h3 className={styles.productName}>Galaxy Note20 Ultra 5G</h3>
-                  <p className={styles.price}>$2,780</p>
-                  <div className={styles.rating}>⭐⭐⭐⭐⭐ <span>(5)</span></div>
-                  <button className={styles.orderBtn}>Order Now</button>
-                </div>
+              {products
+                .filter((product) => product.category === 'smartphones').slice(0,10)
+                .map((product, index) => (
+                  <div key={product.id} className={styles.productCard}>
+                    <div className={styles.tag}>New</div>
+                    <img src={product.thumbnail} alt={product.title} />
+                    <p className={styles.stock}>In stock {product.stock} Items</p>
+                    <h3 className={styles.productName}>{product.title}</h3>
+                    <p className={styles.price}>${product.price}</p>
+                    <div className={styles.rating}>⭐⭐⭐⭐⭐ <span>({product.rating})</span></div>
+                    <button className={styles.orderBtn}>Order Now</button>
+                  </div>
               ))}
-            </div>
+              </div> 
         </section>
         <section className={styles.promoCollectionSection}>
             {/* Promo Banners */}

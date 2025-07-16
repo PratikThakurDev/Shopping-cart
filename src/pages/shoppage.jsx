@@ -1,6 +1,6 @@
-import phone from '../assets/phone.jpg' ;
-import styles from '../styles/shoppage.module.css';
+import phone from '../assets/phone.jpg';
 import NavBar from '../components/navbar';
+import styles from '../styles/shoppage.module.css';
 const products = [
   {
     title: "MOKOBARA The Aisle Backpack",
