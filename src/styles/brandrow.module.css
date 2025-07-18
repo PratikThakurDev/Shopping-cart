@@ -1,0 +1,14 @@
+.brandRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.brandRow img {
+  height: 70px;
+  object-fit: contain;
+}

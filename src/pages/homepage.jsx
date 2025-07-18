@@ -1,13 +1,16 @@
 import appleWatch from '../assets/ali-haki-ygXQfVFwbkA-unsplash.jpg';
 import phone from '../assets/phone.jpg';
 import NavBar from '../components/navbar';
+import BrandRow from '../components/brandrow';
 import styles from '../styles/homepage.module.css';
 import { useEffect, useState } from 'react';
 import { getAllProducts } from '../api/productService';
 
+
 const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [trendingSecCategory,setTrendingSecCategory] = useState('smartphones') ;
+  const [recommendedSection,setRecommendedSection] = useState('smartphones') ;
 
   useEffect(() => {
     async function fetchProducts() {
@@ -34,7 +37,6 @@ const HomePage = () => {
       return matchBrand && matchTitle && matchCategory && matchTag;
     });
   };
-
 
   return (
     <>
@@ -136,9 +138,9 @@ const HomePage = () => {
                   <p className={styles.price}>${product.price}</p>
                   <div className={styles.rating}>
                     {Array.from({ length: 5 }, (_, i) => (
-                      <span key={i}>{i < Math.round(product.rating) ? '⭐' : '☆'}</span>
+                      <span key={i}>{i < Math.floor(product.rating) ? '⭐' : '☆'}</span>
                     ))}
-                    <span> ({product.rating})</span>
+                    <span> ({Math.floor(product.rating)})</span>
                   </div>
                   <button className={styles.orderBtn}>Order Now</button>
                 </div>
@@ -150,7 +152,7 @@ const HomePage = () => {
         <section className={styles.promoCollectionSection}>
           <div className={styles.promoBanners}>
             {[
-              ...products.filter((p) => p.title.toLowerCase().includes('watch')).slice(0, 1).map((product) => (
+              products.filter((p) => p.title.toLowerCase().includes('watch')).slice(0, 1).map((product) => (
                 <div key={product.id} className={`${styles.promoCard} ${styles.blue}`}>
                   <div>
                     <h3>Discounts 50% <br /> On All Watches</h3>
@@ -159,7 +161,7 @@ const HomePage = () => {
                   <img src={product.thumbnail} alt="Watch Promo" />
                 </div>
               )),
-              ...products.filter((p) => p.title.toLowerCase().includes('pods')).slice(0, 1).map((product) => (
+              products.filter((p) => p.title.toLowerCase().includes('pods')).slice(0, 1).map((product) => (
                 <div key={product.id} className={`${styles.promoCard} ${styles.purple}`}>
                   <div>
                     <h3>Mega Discounts <br /><span>This Week</span></h3>
@@ -174,19 +176,18 @@ const HomePage = () => {
           <h3 className={styles.collectionTitle}>Collection List</h3>
           <div className={styles.collectionGrid}>
             {[
-              'Speaker',
-              'Smart Watch',
-              'Camera',
-              'Smart Phone',
-              'Virtual Accessories',
-              'Smart Buds',
-            ].map((label, index) => (
+              { label: 'Men Clothing', image: getProduct({category : 'mens-shirts' })[0] },
+              { label: 'Smart Watch', image: getProduct({category : 'mens-watches' })[1] },
+              { label: 'Men Shoes', image: getProduct({category : 'mens-shoes' })[0] },
+              { label: 'Smart Phone', image: getProduct({category : 'smartphones' })[4] },
+              { label: 'Virtual Accessories', image: getProduct({category : 'mobile-accessories' })[2] },
+              { label: 'Laptops', image: getProduct({category : 'laptops' })[4] },
+            ].map(({label,image}, index) => (
               <div key={index} className={styles.collectionItem}>
                 <div className={styles.circle}>
-                  <img src={appleWatch} alt={label} />
+                  <img src={image?.thumbnail} alt={label} />
                 </div>
                 <p>{label}</p>
-                <span>20 Items</span>
               </div>
             ))}
           </div>
@@ -196,28 +197,31 @@ const HomePage = () => {
         <section className={styles.recommendedSection}>
           <h3 className={styles.sectionTitle}>Recommended for You</h3>
           <nav className={styles.tabs}>
-            {['Accessories', 'Smart Watch', 'Smart Phone', 'Speaker'].map((cat, i) => (
-              <span key={i} className={i === 0 ? styles.activeTab : ''}>{cat}</span>
+            {[
+              { label: 'Mobile', category: 'smartphones' },
+              { label: 'Watches', category: 'mens-watches' },
+              { label: 'Shoes', category: 'mens-shoes' },
+              { label: 'Laptops', category: 'laptops' },
+            ].map(({label, category}) => (
+              <span key={category} 
+              onClick={()=>(setRecommendedSection(category))}
+              className={recommendedSection === category ? styles.activeTab : ''}>{label}</span>
             ))}
           </nav>
 
           <div className={styles.productGrid}>
-            {[...Array(6)].map((_, i) => (
+            {getProduct({category : recommendedSection}).slice(0,6)
+            .map((product , i) => (
               <div key={i} className={styles.productCard}>
-                <div className={styles.inStock}>• In stock 52 Items</div>
-                <img src={phone} alt="Product" />
-                <h4>Product Name {i + 1}</h4>
-                <p className={styles.price}>${(100 + i * 100)}</p>
+                <div className={styles.inStock}>• In stock {product.stock} Items</div>
+                <img src={product.thumbnail} alt="Product" />
+                <h4>{product.title}</h4>
+                <p className={styles.price}>${product.price}</p>
                 <button>Order Now</button>
               </div>
             ))}
           </div>
-
-          <div className={styles.brandRow}>
-            {['Renesas', 'Sharp', 'Huawei', 'Nokia', 'Samsung', 'Canon'].map((brand, i) => (
-              <img key={i} src={`https://via.placeholder.com/80x30?text=${brand}`} alt={brand} />
-            ))}
-          </div>
+          
         </section>
       </main>
     </>
