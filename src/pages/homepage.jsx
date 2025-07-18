@@ -19,11 +19,12 @@ const HomePage = () => {
 
   const getProduct = ({ brand, titleIncludes, category, tag }) => {
     return products.filter((product) => {
-      const matchBrand = brand ? product.brand?.toLowerCase() === brand.toLowerCase() : true;
-      const matchTitle = titleIncludes
+      const matchBrand = brand && typeof(brand) === 'string'
+      ? product.brand?.toLowerCase() === brand.toLowerCase() : true;
+      const matchTitle = titleIncludes 
         ? product.title?.toLowerCase().includes(titleIncludes.toLowerCase())
         : true;
-      const matchCategory = category
+      const matchCategory = category && typeof(category) === 'string' 
         ? product.category?.toLowerCase() === category.toLowerCase()
         : true;
       const matchTag = tag
@@ -106,15 +107,25 @@ const HomePage = () => {
         <section className={styles.trendingSection}>
           <h2>Trending Products</h2>
           <nav className={styles.trendingTabs}>
-            <span className={styles.active}>Mobile</span>
-            <span>Watch</span>
-            <span>Camera</span>
-            <span>Accessories</span>
-            <span>Speaker</span>
+            {[
+              { label: 'Mobile', category: 'smartphones' },
+              { label: 'Watches', category: 'mens-watches' },
+              { label: 'Shoes', category: 'mens-shoes' },
+              { label: 'Laptops', category: 'laptops' },
+              { label: 'Sunglasses', category: 'sunglasses' }
+            ].map(({ label, category }) => (
+              <span
+                key={category}
+                onClick={() => setTrendingSecCategory(category)}
+                className={trendingSecCategory === category ? styles.active : ''}
+              >
+                {label}
+              </span>
+            ))}
           </nav>
 
           <div className={styles.productsGrid}>
-            {getProduct({category : 'smartphones'})
+            {getProduct({category : trendingSecCategory})
               .slice(0, 10)
               .map((product) => (
                 <div key={product.id} className={styles.productCard}>
