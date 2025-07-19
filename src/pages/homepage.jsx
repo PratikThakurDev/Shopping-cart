@@ -1,35 +1,25 @@
 
+import { useState } from 'react';
 import BrandRow from '../components/brandrow';
 import styles from '../styles/homepage.module.css';
-import { useEffect, useState } from 'react';
-import ProductCard from '../components/productCard';
-import ProductModal from '../components/productModal';
 import { getProduct } from '../utils/getProduct';
 
-const HomePage = ({products}) => {
+const HomePage = ({products, onProductClick}) => {
 
   const [trendingSecCategory,setTrendingSecCategory] = useState('smartphones') ;
   const [recommendedSection,setRecommendedSection] = useState('smartphones') ;
-  const [selectedProduct , setSelectedProduct] = useState(null) ;
-
-  const handleProductClick = (productCard) => {
-    if(!productCard) return null ;
-    setSelectedProduct(productCard) ;
-  }
 
   return (
     <>
-      <ProductModal product={selectedProduct} onClose={()=>setSelectedProduct(null)}/>
-
       <main>
         <section className={styles.topRow}>
           {getProduct(products ,{ brand: 'Apple', tag: 'smart speakers'})
             .map((product) => (
-              <div key={product.id} className={`${styles.card} ${styles.blue}`} onClick={()=> handleProductClick(product)}>
+              <div key={product.id} className={`${styles.card} ${styles.blue}`} onClick={()=> onProductClick(product)}>
                 <div>
                   <h1>{product.title}</h1>
                   <p>{product.description}</p>
-                  <button onClick = {() => (handleProductClick(product))} className = {styles.shop}>Shop Now →</button>
+                  <button onClick = {() => (onProductClick(product))} className = {styles.shop}>Shop Now →</button>
                 </div>
                 <img src={product.thumbnail} alt={product.title} />
               </div>
@@ -37,10 +27,10 @@ const HomePage = ({products}) => {
 
           {getProduct(products ,{ brand: 'Apple' , titleIncludes : 'watch'})
             .map((product) => (
-              <div key={product.id} className={`${styles.card} ${styles.purple}`} onClick={()=> handleProductClick(product)}>
+              <div key={product.id} className={`${styles.card} ${styles.purple}`} onClick={()=> onProductClick(product)}>
                 <div>
                   <h1>Explore {product.title}</h1>
-                  <p className = {styles.shop} onClick={()=> handleProductClick(product)}>Shop Now →</p>
+                  <p className = {styles.shop} onClick={()=> onProductClick(product)}>Shop Now →</p>
                 </div>
                 <img src={product.thumbnail} alt={product.title} />
               </div>
@@ -51,10 +41,10 @@ const HomePage = ({products}) => {
         <section className={styles.bottomGrid}>
           {getProduct(products ,{brand: 'Amazon' , titleIncludes : 'echo'})
             .map((product) => (
-              <div key={product.id} className={`${styles.card} ${styles.orange}`} onClick={()=> handleProductClick(product)}>
+              <div key={product.id} className={`${styles.card} ${styles.orange}`} onClick={()=> onProductClick(product)}>
                 <div>
                   <h2>{product.title}</h2>
-                    <p onClick={()=> handleProductClick(product)} className = {styles.shop}>Shop Now →</p>
+                    <p onClick={()=> onProductClick(product)} className = {styles.shop}>Shop Now →</p>
                 </div>
                 <img src={product.thumbnail} alt={product.title} />
               </div>
@@ -62,10 +52,10 @@ const HomePage = ({products}) => {
 
           {getProduct (products ,{brand : 'Apple' , titleIncludes : 'pods max'})
             .map((product) => (
-              <div key={product.id} className={`${styles.card} ${styles.green}`} onClick={()=> handleProductClick(product)}>
+              <div key={product.id} className={`${styles.card} ${styles.green}`} onClick={()=> onProductClick(product)}>
                 <div>
                   <h2>{product.title}</h2>
-                  <p className = {styles.shop} onClick={()=> handleProductClick(product)}>Shop Now →</p>
+                  <p className = {styles.shop} onClick={()=> onProductClick(product)}>Shop Now →</p>
                 </div>
                 <img src={product.thumbnail} alt={product.title} />
               </div>
@@ -73,10 +63,10 @@ const HomePage = ({products}) => {
 
           {getProduct(products ,{brand : 'Rolex' , titleIncludes : 'watch'})
             .map((product) => (
-              <div key={product.id} className={`${styles.card} ${styles.dark}`} onClick={()=> handleProductClick(product)}>
+              <div key={product.id} className={`${styles.card} ${styles.dark}`} onClick={()=> onProductClick(product)}>
                 <div>
                   <h2>{product.title}</h2>
-                  <p className = {styles.shop} onClick={()=> handleProductClick(product)}>Shop Now →</p>
+                  <p className = {styles.shop} onClick={()=> onProductClick(product)}>Shop Now →</p>
                 </div>
                 <img src={product.thumbnail} alt={product.title} />
               </div>
@@ -108,7 +98,7 @@ const HomePage = ({products}) => {
             {getProduct(products ,{category : trendingSecCategory})
               .slice(0, 10)
               .map((product) => (
-                <div key={product.id} className={styles.productCard} onClick={()=> handleProductClick(product)}>
+                <div key={product.id} className={styles.productCard} onClick={()=> onProductClick(product)}>
                   <div className={styles.tag}>New</div>
                   <img src={product.thumbnail} alt={product.title} />
                   <p className={styles.stock}>In stock {product.stock} Items</p>
@@ -120,7 +110,7 @@ const HomePage = ({products}) => {
                     ))}
                     <span> ({Math.floor(product.rating)})</span>
                   </div>
-                  <button className={styles.orderBtn} onClick={()=> handleProductClick(product)}>Order Now</button>
+                  <button className={styles.orderBtn} onClick={()=> onProductClick(product)}>Order Now</button>
                 </div>
               ))}
           </div>
@@ -190,12 +180,12 @@ const HomePage = ({products}) => {
           <div className={styles.productGrid}>
             {getProduct(products ,{category : recommendedSection}).slice(0,6)
             .map((product , i) => (
-              <div key={i} className={styles.productCard} onClick={()=> handleProductClick(product)}>
+              <div key={i} className={styles.productCard} onClick={()=> onProductClick(product)}>
                 <div className={styles.inStock}>• In stock {product.stock} Items</div>
                 <img src={product.thumbnail} alt="Product" />
                 <h4>{product.title}</h4>
                 <p className={styles.price}>${product.price}</p>
-                <button onClick={()=> handleProductClick(product)}>Order Now</button>
+                <button onClick={()=> onProductClick(product)}>Order Now</button>
               </div>
             ))}
           </div>
