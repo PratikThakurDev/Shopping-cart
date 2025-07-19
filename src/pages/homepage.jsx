@@ -138,7 +138,7 @@ const HomePage = () => {
             {getProduct({category : trendingSecCategory})
               .slice(0, 10)
               .map((product) => (
-                <div key={product.id} className={styles.productCard}>
+                <div key={product.id} className={styles.productCard} onClick={()=> handleProductClick(product)}>
                   <div className={styles.tag}>New</div>
                   <img src={product.thumbnail} alt={product.title} />
                   <p className={styles.stock}>In stock {product.stock} Items</p>
@@ -150,7 +150,7 @@ const HomePage = () => {
                     ))}
                     <span> ({Math.floor(product.rating)})</span>
                   </div>
-                  <button className={styles.orderBtn}>Order Now</button>
+                  <button className={styles.orderBtn} onClick={()=> handleProductClick(product)}>Order Now</button>
                 </div>
               ))}
           </div>

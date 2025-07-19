@@ -29,7 +29,7 @@ const products = [
   },
 ];
 
-const ShoppingSection = () => {
+const ShoppingSection = ({products}) => {
   return (
     <>
     <NavBar/>
