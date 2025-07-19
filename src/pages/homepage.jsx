@@ -1,28 +1,16 @@
-import appleWatch from '../assets/ali-haki-ygXQfVFwbkA-unsplash.jpg';
-import phone from '../assets/phone.jpg';
-import NavBar from '../components/navbar';
+
 import BrandRow from '../components/brandrow';
 import styles from '../styles/homepage.module.css';
 import { useEffect, useState } from 'react';
-import { getAllProducts } from '../api/productService';
 import ProductCard from '../components/productCard';
 import ProductModal from '../components/productModal';
 import { getProduct } from '../utils/getProduct';
 
-const HomePage = () => {
-  const [products, setProducts] = useState([]);
+const HomePage = ({products}) => {
+
   const [trendingSecCategory,setTrendingSecCategory] = useState('smartphones') ;
   const [recommendedSection,setRecommendedSection] = useState('smartphones') ;
   const [selectedProduct , setSelectedProduct] = useState(null) ;
-
-  useEffect(() => {
-    async function fetchProducts() {
-      const products = await getAllProducts();
-      console.log(products)
-      setProducts(products);
-    }
-    fetchProducts();
-  }, []);
 
   const handleProductClick = (productCard) => {
     if(!productCard) return null ;
@@ -31,7 +19,6 @@ const HomePage = () => {
 
   return (
     <>
-      <NavBar />
       <ProductModal product={selectedProduct} onClose={()=>setSelectedProduct(null)}/>
 
       <main>

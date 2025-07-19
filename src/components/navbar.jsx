@@ -1,33 +1,37 @@
-import styles from '../styles/navBar.module.css';
-import {useState,useEffect} from 'react' ;
+import { useEffect, useState } from 'react';
+import { getAllProducts } from '../api/productService';
 import ShoppingSection from '../pages/shoppage';
-const NavBar = ( ) => {
+import styles from '../styles/navBar.module.css';
+import HomePage from '../pages/homepage';
 
-    const [productSearched , setProductSearched] = useState([]) ;
 
-    const handleSubmit = (e) => {
-        e.preventDefault() ;
-        if(!productSearched.trim()) return null ;
-        <ShoppingSection productQuery = {productSearched} />
-        
-    }
+const NavBar = ({ onSearch }) => {
+  const [query, setQuery] = useState('');
 
-    return(
-        <>
-            <nav className={styles.navbar}>
-            <div className={styles.companyName}>DigiTech</div>
-            <form className={styles.searchBar} onSubmit={handleSubmit}>
-                <input className={styles.input} type="text" placeholder="Search..."  onChange = {(e) => setProductSearched(e.target.value)}/>
-                <button type = 'submit'>🔍</button>
-            </form>
-            <div className={styles.icons}>
-                <span>👤</span>
-                <span>🛒</span>
-            </div>
-            </nav>
-        </>
-    )
-    
-}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!query.trim()) return;
+    onSearch(query);
+  };
+
+  return (
+    <nav className={styles.navbar}>
+      <div className={styles.companyName}>DigiTech</div>
+      <form className={styles.searchBar} onSubmit={handleSubmit}>
+        <input
+          className={styles.input}
+          type="text"
+          placeholder="Search..."
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button type="submit">🔍</button>
+      </form>
+      <div className={styles.icons}>
+        <span>👤</span>
+        <span>🛒</span>
+      </div>
+    </nav>
+  );
+};
 
 export default NavBar ;

@@ -2,6 +2,7 @@ import phone from '../assets/phone.jpg';
 import NavBar from '../components/navbar';
 import BrandRow from '../components/brandrow';
 import styles from '../styles/shoppage.module.css';
+import { getProduct } from '../utils/getProduct';
 const products = [
   {
     title: "MOKOBARA The Aisle Backpack",
@@ -29,19 +30,18 @@ const products = [
   },
 ];
 
-const ShoppingSection = ({productQuery}) => {
+const ShoppingSection = ({productQuery , productList}) => {
   return (
     <>
-    <NavBar/>
     <section className={styles.resultsSection}>
       <h2>Results</h2>
       <p className={styles.subText}>
         Check each product page for other buying options. Price and other details may vary.
       </p>
 
-      {products.map((p, i) => (
+      {getProduct(productList,{titleIncludes : productQuery}).map((p, i) => (
         <div key={i} className={styles.card}>
-          <img src={phone} alt={p.title} className={styles.productImg} />
+          <img src={p.thumbnail} alt={p.title} className={styles.productImg} />
           <div className={styles.productInfo}>
             <h3>{p.title}</h3>
             <p className={styles.description}>{p.desc}</p>
