@@ -1,5 +1,6 @@
 import phone from '../assets/phone.jpg';
 import NavBar from '../components/navbar';
+import BrandRow from '../components/brandrow';
 import styles from '../styles/shoppage.module.css';
 const products = [
   {
@@ -50,6 +51,7 @@ const ShoppingSection = () => {
         </div>
       ))}
     </section>
+    <BrandRow/>
       </>
   );
 };

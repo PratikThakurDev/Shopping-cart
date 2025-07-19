@@ -1,6 +1,6 @@
 import styles from '../styles/brandrow.module.css' ;
 
-const BrandRow = () = {
+const BrandRow = () => {
     return (
         <div className={styles.brandRow}>
         {[{brand : 'Huawei' , logo : "https://logo.clearbit.com/huawei.com"},
@@ -9,7 +9,7 @@ const BrandRow = () = {
             {brand : 'Canon' , logo : "https://logo.clearbit.com/canon.com"},
             {brand : 'Asus' , logo : "https://logo.clearbit.com/asus.com"}, 
             {brand : 'Apple' , logo : "https://logo.clearbit.com/apple.com"}].map(({brand , logo}, i) => (
-            <img key={i} src={logo} alt={brand} />
+            <img key={i} src= {logo} alt={brand} />
         ))}
         </div>
     )

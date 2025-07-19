@@ -16,6 +16,10 @@
   padding: 2rem;
 }
 
+.shop {
+  cursor:pointer ;
+}
+
 .card {
   display: flex;
   justify-content: space-between;
