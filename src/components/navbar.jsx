@@ -8,7 +8,7 @@ const NavBar = ( ) => {
     const handleSubmit = (e) => {
         e.preventDefault() ;
         if(!productSearched.trim()) return null ;
-        <ShoppingSection products = {productSearched} />
+        <ShoppingSection productQuery = {productSearched} />
         
     }
 

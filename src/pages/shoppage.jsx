@@ -29,7 +29,7 @@ const products = [
   },
 ];
 
-const ShoppingSection = ({products}) => {
+const ShoppingSection = ({productQuery}) => {
   return (
     <>
     <NavBar/>

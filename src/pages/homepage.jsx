@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { getAllProducts } from '../api/productService';
 import ProductCard from '../components/productCard';
 import ProductModal from '../components/productModal';
+import { getProduct } from '../utils/getProduct';
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -23,24 +24,6 @@ const HomePage = () => {
     fetchProducts();
   }, []);
 
-  const getProduct = ({ brand, titleIncludes, category, tag }) => {
-    return products.filter((product) => {
-      const matchBrand = brand && typeof(brand) === 'string'
-      ? product.brand?.toLowerCase() === brand.toLowerCase() : true;
-      const matchTitle = titleIncludes 
-        ? product.title?.toLowerCase().includes(titleIncludes.toLowerCase())
-        : true;
-      const matchCategory = category && typeof(category) === 'string' 
-        ? product.category?.toLowerCase() === category.toLowerCase()
-        : true;
-      const matchTag = tag
-        ? product.tags?.some((t) => t.toLowerCase() === tag.toLowerCase())
-        : true;
-
-      return matchBrand && matchTitle && matchCategory && matchTag;
-    });
-  };
-
   const handleProductClick = (productCard) => {
     if(!productCard) return null ;
     setSelectedProduct(productCard) ;
@@ -53,7 +36,7 @@ const HomePage = () => {
 
       <main>
         <section className={styles.topRow}>
-          {getProduct({ brand: 'Apple', tag: 'smart speakers' })
+          {getProduct(products ,{ brand: 'Apple', tag: 'smart speakers'})
             .map((product) => (
               <div key={product.id} className={`${styles.card} ${styles.blue}`} onClick={()=> handleProductClick(product)}>
                 <div>
@@ -65,7 +48,7 @@ const HomePage = () => {
               </div>
             ))}
 
-          {getProduct({ brand: 'Apple' , titleIncludes : 'watch'})
+          {getProduct(products ,{ brand: 'Apple' , titleIncludes : 'watch'})
             .map((product) => (
               <div key={product.id} className={`${styles.card} ${styles.purple}`} onClick={()=> handleProductClick(product)}>
                 <div>
@@ -79,7 +62,7 @@ const HomePage = () => {
 
         {/* Bottom Cards Grid */}
         <section className={styles.bottomGrid}>
-          {getProduct({brand: 'Amazon' , titleIncludes : 'echo'})
+          {getProduct(products ,{brand: 'Amazon' , titleIncludes : 'echo'})
             .map((product) => (
               <div key={product.id} className={`${styles.card} ${styles.orange}`} onClick={()=> handleProductClick(product)}>
                 <div>
@@ -90,7 +73,7 @@ const HomePage = () => {
               </div>
             ))}
 
-          {getProduct ({brand : 'Apple' , titleIncludes : 'pods max'})
+          {getProduct (products ,{brand : 'Apple' , titleIncludes : 'pods max'})
             .map((product) => (
               <div key={product.id} className={`${styles.card} ${styles.green}`} onClick={()=> handleProductClick(product)}>
                 <div>
@@ -101,7 +84,7 @@ const HomePage = () => {
               </div>
             ))}
 
-          {getProduct({brand : 'Rolex' , titleIncludes : 'watch'})
+          {getProduct(products ,{brand : 'Rolex' , titleIncludes : 'watch'})
             .map((product) => (
               <div key={product.id} className={`${styles.card} ${styles.dark}`} onClick={()=> handleProductClick(product)}>
                 <div>
@@ -135,7 +118,7 @@ const HomePage = () => {
           </nav>
 
           <div className={styles.productsGrid}>
-            {getProduct({category : trendingSecCategory})
+            {getProduct(products ,{category : trendingSecCategory})
               .slice(0, 10)
               .map((product) => (
                 <div key={product.id} className={styles.productCard} onClick={()=> handleProductClick(product)}>
@@ -184,12 +167,12 @@ const HomePage = () => {
           <h3 className={styles.collectionTitle}>Collection List</h3>
           <div className={styles.collectionGrid}>
             {[
-              { label: 'Men Clothing', image: getProduct({category : 'mens-shirts' })[0] },
-              { label: 'Smart Watch', image: getProduct({category : 'mens-watches' })[1] },
-              { label: 'Men Shoes', image: getProduct({category : 'mens-shoes' })[0] },
-              { label: 'Smart Phone', image: getProduct({category : 'smartphones' })[4] },
-              { label: 'Virtual Accessories', image: getProduct({category : 'mobile-accessories' })[2] },
-              { label: 'Laptops', image: getProduct({category : 'laptops' })[4] },
+              { label: 'Men Clothing', image: getProduct(products ,{category : 'mens-shirts' })[0] },
+              { label: 'Smart Watch', image: getProduct(products ,{category : 'mens-watches' })[1] },
+              { label: 'Men Shoes', image: getProduct(products ,{category : 'mens-shoes' })[0] },
+              { label: 'Smart Phone', image: getProduct(products ,{category : 'smartphones' })[4] },
+              { label: 'Virtual Accessories', image: getProduct(products ,{category : 'mobile-accessories' })[2] },
+              { label: 'Laptops', image: getProduct(products ,{category : 'laptops' })[4] },
             ].map(({label,image}, index) => (
               <div key={index} className={styles.collectionItem}>
                 <div className={styles.circle}>
@@ -218,7 +201,7 @@ const HomePage = () => {
           </nav>
 
           <div className={styles.productGrid}>
-            {getProduct({category : recommendedSection}).slice(0,6)
+            {getProduct(products ,{category : recommendedSection}).slice(0,6)
             .map((product , i) => (
               <div key={i} className={styles.productCard} onClick={()=> handleProductClick(product)}>
                 <div className={styles.inStock}>• In stock {product.stock} Items</div>
