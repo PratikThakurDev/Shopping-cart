@@ -38,7 +38,7 @@ const App = () => {
       setCartProduct([...cartProduct, product]) ; 
     }   
   }
-  
+
   return (
     <>
       <NavBar onSearch={handleSearch} setPage = {setPage} />
@@ -46,7 +46,7 @@ const App = () => {
         <HomePage products={products} onProductClick={handleProductClick} onSearch={handleSearch}/>
       ) : page==='search' ? (
         <ShoppingSection productQuery={productSearched} productList={products} onProductClick={handleProductClick}/>
-      ) : <Cart/> }
+      ) : <Cart productList = {cartProduct} setProductList = {setCartProduct}/> }
       <ProductModal product={selectedProduct} onClose={()=>setSelectedProduct(null)} onAdd = {(product)=>handleAddtoCart(product)}/>
     </>
   );

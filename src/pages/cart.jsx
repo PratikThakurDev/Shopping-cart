@@ -1,31 +1,43 @@
 import styles from "../styles/cart.module.css";
-import NavBar from "../components/navbar";
 
-const CartPage = () => {
+const CartPage = ({productList , setProductList}) => {
+
+  const handleIncrement = (product) => {
+    if(!product) return ;
+    setProductList(prev =>
+      prev.map(p =>
+        p.id === product.id ? { ...p, quantity: (p.quantity || 1) + 1 } : p
+      )
+    );
+  }
+
+  const handleDecrement = () => {
+    
+  }
+
+
   return (
     <>
     <div className={styles.cartPage}>
       <div className={styles.cartItemsSection}>
         <h2>Your cart</h2>
-        <p>5 Products in Your cart</p>
+        <p>{productList.length} Products in Your cart</p>
 
-        {[...Array(5)].map((_, i) => (
-          <div className={styles.cartItem} key={i}>
-            <img src="/sample.png" alt="Product" />
+        {productList && productList.map((product) => (
+          <div className={styles.cartItem} key={product.id}>
+            <img src={product.thumbnail} alt={product.title}/>
             <div className={styles.itemDetails}>
-              <h4>Great product name goes here</h4>
-              <p>Color: Silver</p>
-              <p>Size: Large</p>
-              <p>Price: 23 USD / per item</p>
+              <h4>{product.title}</h4>
+              <p>{product.description}</p>
+              <p>${product.price}</p>
             </div>
             <div className={styles.controls}>
-              <select>
-                <option>Qty: 1</option>
-                <option>Qty: 2</option>
-              </select>
-              <button>✕</button>
+              Qty: {product.quantity || 1}
+              <span className={styles.qtyBtn} onClick = {()=>handleIncrement(product)}>+</span>
+              <span className={styles.qtyBtn}>-</span>
+              <button className={styles.remove}>✕</button>
             </div>
-            <div className={styles.price}>46.00 USD</div>
+            <div className={styles.price}>${product.quantity ? (product.price*product.quantity).toFixed(2) : product.price}</div>
           </div>
         ))}
 
