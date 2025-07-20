@@ -28,6 +28,13 @@ const CartPage = ({productList , setProductList}) => {
     )
   }
 
+  const totalItems = productList.reduce((acc, p) => acc + (p.quantity || 1), 0);
+  const subtotal = parseFloat((productList.reduce((acc, p) => acc + p.price * (p.quantity || 1), 0)).toFixed(2));
+  const deliveryCost = 25;
+  const tax = parseFloat((subtotal * 0.05).toFixed(2));
+  const discount = parseFloat((subtotal*0.1).toFixed(2)); // flat discount (can make dynamic later)
+  const total = parseFloat((subtotal + deliveryCost + tax - discount).toFixed(2));
+
 
   return (
     <>
@@ -50,34 +57,30 @@ const CartPage = ({productList , setProductList}) => {
               <span className={styles.qtyBtn} onClick = {()=>handleDecrement(product)}>-</span>
               <button className={styles.remove} onClick = {()=>handleRemove(product)}>✕</button>
             </div>
-            <div className={styles.price}>${product.quantity ? (product.price*product.quantity).toFixed(2) : product.price}</div>
+            <div className={styles.price}>${product.quantity ? (product.price).toFixed(2) : product.price}</div>
           </div>
         ))}
 
         <a href="#" className={styles.removeAll} onClick={()=>setProductList([])}>Remove all from cart</a>
       </div>
 
-      <div className={styles.summaryBox}>
+      {productList.length!==0 && <div className={styles.summaryBox}>
         <div style={{ display: "flex" }}>
           <input type="text" placeholder="Promocode" />
-          <button>Apply</button>
+          <button className={styles.applyBtn}>Apply</button>
         </div>
 
         <div className={styles.summaryInfo}>
-          <p>5 items: <span>$1703.00</span></p>
-          <p>Delivery cost: <span>$25</span></p>
-          <p>Tax: <span>$14</span></p>
-          <p>Discount: <span className={styles.discount}>- $60.00</span></p>
+          <p>{totalItems} items: <span>${subtotal}</span></p>
+          <p>Delivery cost: <span>${deliveryCost}</span></p>
+          <p>Tax: <span>${tax}</span></p>
+          <p>Discount: <span className={styles.discount}>- ${discount}</span></p>
           <hr />
-          <p className={styles.total}>Total: <span>$1,655.99</span></p>
+          <p className={styles.total}>Total: <span>${total}</span></p>
         </div>
 
         <button className={styles.checkoutBtn}>Checkout →</button>
-
-        <div className={styles.deliveryNote}>
-          📦 Delivered by <strong>Friday, May 20</strong>
-        </div>
-      </div>
+      </div>}
     </div>
   </>
   );

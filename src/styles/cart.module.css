@@ -116,7 +116,7 @@
   font-weight: bold;
 }
 
-.checkoutBtn {
+.checkoutBtn  {
   width: 100%;
   margin-top: 1rem;
   background-color: #1e1bfb;
@@ -126,6 +126,10 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.applyBtn {
+  height: 30%;
 }
 
 .deliveryNote {
