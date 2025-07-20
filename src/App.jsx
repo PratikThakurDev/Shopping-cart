@@ -36,6 +36,7 @@ const App = () => {
     if (!cartProduct.some(p => p.id === product.id)) {
       setCartProduct(prev => [...prev, { ...product, quantity: 1 }]);
     }
+    setSelectedProduct(null) ;
   };
 
   return (
