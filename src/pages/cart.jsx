@@ -11,8 +11,21 @@ const CartPage = ({productList , setProductList}) => {
     );
   }
 
-  const handleDecrement = () => {
-    
+  const handleDecrement = (product) => {
+    if(!product) return ;
+    setProductList(prev =>
+      prev.map(p =>
+        p.id === product.id ? { ...p, quantity: (p.quantity || 1) - 1 } : p
+      )
+    );
+  }
+
+  const handleRemove = (product) => {
+    setProductList(prev =>
+      prev.filter(p => 
+        p.id !== product.id
+      )
+    )
   }
 
 
@@ -34,14 +47,14 @@ const CartPage = ({productList , setProductList}) => {
             <div className={styles.controls}>
               Qty: {product.quantity || 1}
               <span className={styles.qtyBtn} onClick = {()=>handleIncrement(product)}>+</span>
-              <span className={styles.qtyBtn}>-</span>
-              <button className={styles.remove}>✕</button>
+              <span className={styles.qtyBtn} onClick = {()=>handleDecrement(product)}>-</span>
+              <button className={styles.remove} onClick = {()=>handleRemove(product)}>✕</button>
             </div>
             <div className={styles.price}>${product.quantity ? (product.price*product.quantity).toFixed(2) : product.price}</div>
           </div>
         ))}
 
-        <a href="#" className={styles.removeAll}>Remove all from cart</a>
+        <a href="#" className={styles.removeAll} onClick={()=>setProductList([])}>Remove all from cart</a>
       </div>
 
       <div className={styles.summaryBox}>
