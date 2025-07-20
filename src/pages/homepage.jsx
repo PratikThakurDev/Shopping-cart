@@ -4,7 +4,7 @@ import BrandRow from '../components/brandrow';
 import styles from '../styles/homepage.module.css';
 import { getProduct } from '../utils/getProduct';
 
-const HomePage = ({products, onProductClick}) => {
+const HomePage = ({products, onProductClick , onSearch}) => {
 
   const [trendingSecCategory,setTrendingSecCategory] = useState('smartphones') ;
   const [recommendedSection,setRecommendedSection] = useState('smartphones') ;
@@ -121,7 +121,7 @@ const HomePage = ({products, onProductClick}) => {
           <div className={styles.promoBanners}>
             {[
               products.filter((p) => p.title.toLowerCase().includes('watch')).slice(0, 1).map((product) => (
-                <div key={product.id} className={`${styles.promoCard} ${styles.blue}`}>
+                <div key={product.id} className={`${styles.promoCard} ${styles.blue}`} onClick={()=>onSearch('watch')}>
                   <div>
                     <h3>Discounts 50% <br /> On All Watches</h3>
                     <a href="#">Shop Now →</a>
@@ -130,7 +130,7 @@ const HomePage = ({products, onProductClick}) => {
                 </div>
               )),
               products.filter((p) => p.title.toLowerCase().includes('pods')).slice(0, 1).map((product) => (
-                <div key={product.id} className={`${styles.promoCard} ${styles.purple}`}>
+                <div key={product.id} className={`${styles.promoCard} ${styles.purple}`} onClick={()=>onSearch('')}>
                   <div>
                     <h3>Mega Discounts <br /><span>This Week</span></h3>
                     <a href="#">Shop Now →</a>
@@ -144,14 +144,14 @@ const HomePage = ({products, onProductClick}) => {
           <h3 className={styles.collectionTitle}>Collection List</h3>
           <div className={styles.collectionGrid}>
             {[
-              { label: 'Men Clothing', image: getProduct(products ,{category : 'mens-shirts' })[0] },
-              { label: 'Smart Watch', image: getProduct(products ,{category : 'mens-watches' })[1] },
-              { label: 'Men Shoes', image: getProduct(products ,{category : 'mens-shoes' })[0] },
-              { label: 'Smart Phone', image: getProduct(products ,{category : 'smartphones' })[4] },
-              { label: 'Virtual Accessories', image: getProduct(products ,{category : 'mobile-accessories' })[2] },
-              { label: 'Laptops', image: getProduct(products ,{category : 'laptops' })[4] },
-            ].map(({label,image}, index) => (
-              <div key={index} className={styles.collectionItem}>
+              { label: 'Men Clothing', image: getProduct(products ,{category : 'mens-shirts' })[0] , query : 'shirt'},
+              { label: 'Smart Watch', image: getProduct(products ,{category : 'mens-watches' , })[1] , query : 'watch'},
+              { label: 'Men Shoes', image: getProduct(products ,{category : 'mens-shoes' })[0] , query : 'shoe'},
+              { label: 'Smart Phone', image: getProduct(products ,{category : 'smartphones' })[4] , query : 'phone'},
+              { label: 'Virtual Accessories', image: getProduct(products ,{category : 'mobile-accessories' })[2] , query : 'mobile'},
+              { label: 'Laptops', image: getProduct(products ,{category : 'laptops' })[4], query : 'laptop'},
+            ].map(({label,image,query}, index) => (
+              <div key={index} className={styles.collectionItem} onClick={()=>onSearch(query)}>
                 <div className={styles.circle}>
                   <img src={image?.thumbnail} alt={label} />
                 </div>

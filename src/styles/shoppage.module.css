@@ -72,3 +72,9 @@
   cursor: pointer;
   font-weight: 600;
 }
+.description {
+  color: #333;
+  font-size: 0.9rem;
+  margin: 0.3rem 0;
+  line-height: 1.4;
+}

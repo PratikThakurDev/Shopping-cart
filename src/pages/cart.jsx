@@ -4,7 +4,6 @@ import NavBar from "../components/navbar";
 const CartPage = () => {
   return (
     <>
-    <NavBar/>
     <div className={styles.cartPage}>
       <div className={styles.cartItemsSection}>
         <h2>Your cart</h2>
@@ -24,7 +23,6 @@ const CartPage = () => {
                 <option>Qty: 1</option>
                 <option>Qty: 2</option>
               </select>
-              <span>❤️</span>
               <button>✕</button>
             </div>
             <div className={styles.price}>46.00 USD</div>

@@ -5,7 +5,7 @@ import styles from '../styles/navBar.module.css';
 import HomePage from '../pages/homepage';
 
 
-const NavBar = ({ onSearch }) => {
+const NavBar = ({ onSearch , setPage}) => {
   const [query, setQuery] = useState('');
 
   const handleSubmit = (e) => {
@@ -16,7 +16,7 @@ const NavBar = ({ onSearch }) => {
 
   return (
     <nav className={styles.navbar}>
-      <div className={styles.companyName}>DigiTech</div>
+      <div className={styles.companyName} onClick = {()=> setPage('home')}>DigiTech</div>
       <form className={styles.searchBar} onSubmit={handleSubmit}>
         <input
           className={styles.input}
@@ -28,7 +28,7 @@ const NavBar = ({ onSearch }) => {
       </form>
       <div className={styles.icons}>
         <span>👤</span>
-        <span>🛒</span>
+        <span onClick={()=>setPage('cart')}>🛒</span>
       </div>
     </nav>
   );

@@ -13,13 +13,13 @@ const ShoppingSection = ({productQuery , productList ,onProductClick}) => {
         Check each product page for other buying options. Price and other details may vary.
       </p>
 
-      {getProduct(productList,{titleIncludes : productQuery}).map((p, i) => (
+      {getProduct(productList,{titleIncludes : productQuery }).map((p, i) => (
         <div key={i} className={styles.card} onClick = {()=>onProductClick(p)}>
           <img src={p.thumbnail} alt={p.title} className={styles.productImg} />
           <div className={styles.productInfo}>
             <h3>{p.title}</h3>
-            <p className={styles.description}>{p.desc}</p>
-            <p className={styles.price}>{p.price}</p>
+            <p className={styles.description}>{p.description}</p>
+            <p className={styles.price}>${p.price}</p>
             <button className={styles.cartBtn}>Add to cart</button>
           </div>
         </div>

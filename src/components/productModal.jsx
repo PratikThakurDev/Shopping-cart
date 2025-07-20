@@ -1,7 +1,7 @@
 
 import styles from '../styles/productModal.module.css';
 
-const ProductModal = ({ product, onClose }) => {
+const ProductModal = ({ product, onClose , onAdd}) => {
     if (!product) return null ;
   const handleOverlayClick = (e) => {
     if (e.target.classList.contains(styles.overlay)) {
@@ -36,7 +36,7 @@ const ProductModal = ({ product, onClose }) => {
             </p>
           </div>
 
-          <button className={styles.cartBtn}>Add to cart</button>
+          <button className={styles.cartBtn} onClick={()=>onAdd(product)}>Add to cart</button>
 
           <div className={styles.infoRow}>
             <p>✅ In Stock</p>
