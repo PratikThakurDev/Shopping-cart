@@ -92,8 +92,6 @@ Modify styling in /styles using CSS Modules.
 
 Integrate backend/cart storage if needed.
 
-📸 Screenshots
-Homepage	Product Modal	Shopping Cart
 
 📝 To-Do (for future)
  LocalStorage-based cart persistence
@@ -107,5 +105,5 @@ Homepage	Product Modal	Shopping Cart
  Wishlist & user auth
 
 🧑‍💻 Author
-[Your Name]
+[Pratik Thakur]
 Made with ❤️ using React and CSS Modules.
